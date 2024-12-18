@@ -1,4 +1,4 @@
-package com.northcoders.recordshop.service;
+package com.northcoders.recordshop.repository;
 
 import android.app.Application;
 import android.util.Log;
@@ -6,6 +6,8 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.service.AlbumApiService;
+import com.northcoders.recordshop.service.RetrofitInstance;
 
 import java.util.List;
 
