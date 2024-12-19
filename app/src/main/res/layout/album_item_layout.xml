@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="album"
+            type="com.northcoders.recordshop.model.Album" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:backgroundTint="#141414"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/album_item_image"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/vinyl_record"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/album_item_info_container"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/album_item_info_container"
+                android:layout_width="0dp"
+                android:layout_height="57dp"
+                android:orientation="vertical"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/album_item_image"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/album_item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textColor="#fff"
+                    android:layout_weight="2"
+                    android:text="@{album.name}"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/album_item_artist_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textColor="#808080"
+                    android:layout_weight="1"
+                    android:text="@{album.artist.name}"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
