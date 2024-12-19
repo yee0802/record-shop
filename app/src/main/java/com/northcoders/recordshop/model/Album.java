@@ -19,16 +19,13 @@ public class Album extends BaseObservable {
     public Album() {
     }
 
-    public Album(long id, String name, Artist artist, String genre, String coverArtUrl, int releaseYear, int stockQuantity, String createdAt, String modifiedAt) {
-        this.id = id;
+    public Album(String name, Artist artist, String genre, String coverArtUrl, int releaseYear, int stockQuantity) {
         this.name = name;
         this.artist = artist;
         this.genre = genre;
         this.coverArtUrl = coverArtUrl;
         this.releaseYear = releaseYear;
         this.stockQuantity = stockQuantity;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
     }
 
     @Bindable
