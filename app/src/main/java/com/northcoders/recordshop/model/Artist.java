@@ -1,7 +1,7 @@
 package com.northcoders.recordshop.model;
 
 public class Artist {
-    private long id;
+    private Long id;
     private String name;
     private String createdAt;
     private String modifiedAt;
@@ -9,18 +9,15 @@ public class Artist {
     public Artist() {
     }
 
-    public Artist(long id, String name, String createdAt, String modifiedAt) {
-        this.id = id;
+    public Artist(String name) {
         this.name = name;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

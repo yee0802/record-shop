@@ -1,18 +1,19 @@
 package com.northcoders.recordshop.model;
 
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.northcoders.recordshop.BR;
 
 public class Album extends BaseObservable {
-    private long id;
+    private Long id;
     private String name;
     private Artist artist;
     private String genre;
     private String coverArtUrl;
-    private int releaseYear;
-    private int stockQuantity;
+    private Integer releaseYear;
+    private Integer stockQuantity;
     private String createdAt;
     private String modifiedAt;
 
@@ -29,11 +30,11 @@ public class Album extends BaseObservable {
     }
 
     @Bindable
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
         notifyPropertyChanged(BR.id);
     }
@@ -79,21 +80,21 @@ public class Album extends BaseObservable {
     }
 
     @Bindable
-    public int getReleaseYear() {
+    public Integer getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(int releaseYear) {
+    public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
         notifyPropertyChanged(BR.releaseYear);
     }
 
     @Bindable
-    public int getStockQuantity() {
+    public Integer getStockQuantity() {
         return stockQuantity;
     }
 
-    public void setStockQuantity(int stockQuantity) {
+    public void setStockQuantity(Integer stockQuantity) {
         this.stockQuantity = stockQuantity;
         notifyPropertyChanged(BR.stockQuantity);
     }
