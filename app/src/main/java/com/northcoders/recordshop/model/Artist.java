@@ -4,8 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.BaseObservable;
 
-public class Artist implements Parcelable {
+public class Artist extends BaseObservable implements Parcelable {
     private Long id;
     private String name;
     private String createdAt;
