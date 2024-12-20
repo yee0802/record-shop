@@ -1,6 +1,11 @@
 package com.northcoders.recordshop.model;
 
-public class Artist {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Artist implements Parcelable {
     private Long id;
     private String name;
     private String createdAt;
@@ -12,6 +17,23 @@ public class Artist {
     public Artist(String name) {
         this.name = name;
     }
+
+    protected Artist(Parcel in) {
+        id = in.readLong();
+        name = in.readString();
+    }
+
+    public static final Creator<Artist> CREATOR = new Creator<Artist>() {
+        @Override
+        public Artist createFromParcel(Parcel in) {
+            return new Artist(in);
+        }
+
+        @Override
+        public Artist[] newArray(int size) {
+            return new Artist[size];
+        }
+    };
 
     public Long getId() {
         return id;
@@ -35,5 +57,16 @@ public class Artist {
 
     public String getModifiedAt() {
         return modifiedAt;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(name);
     }
 }
