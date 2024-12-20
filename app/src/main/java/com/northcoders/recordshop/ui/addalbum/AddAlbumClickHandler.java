@@ -44,12 +44,12 @@ public class AddAlbumClickHandler {
             return;
         }
 
-        if (album.getReleaseYear() == 0) {
+        if (album.getReleaseYear() == null) {
             Toast.makeText(context, "Release year must not be empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (album.getStockQuantity() == 0) {
+        if (album.getStockQuantity() == null) {
             Toast.makeText(context, "Stock quantity must not be empty", Toast.LENGTH_SHORT).show();
             return;
         }

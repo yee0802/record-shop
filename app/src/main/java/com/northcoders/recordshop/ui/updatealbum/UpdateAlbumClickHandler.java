@@ -39,12 +39,12 @@ public class UpdateAlbumClickHandler {
                 album.getStockQuantity()
         );
 
-        if (Objects.equals(updatedAlbum.getArtist(), "") ||
+        if (Objects.equals(updatedAlbum.getArtist(), null) ||
                 Objects.equals(updatedAlbum.getGenre(), "") ||
                 Objects.equals(updatedAlbum.getName(), "") ||
                 Objects.equals(updatedAlbum.getCoverArtUrl(), "") ||
-                Objects.equals(updatedAlbum.getReleaseYear(), "") ||
-                Objects.equals(updatedAlbum.getStockQuantity(), "")) {
+                Objects.equals(updatedAlbum.getReleaseYear(), null) ||
+                Objects.equals(updatedAlbum.getStockQuantity(), null)) {
             Toast.makeText(context, "Missing field(s) in request body", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(context, MainActivity.class);
