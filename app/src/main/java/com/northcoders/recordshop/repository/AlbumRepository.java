@@ -82,16 +82,16 @@ public class AlbumRepository {
     }
 
     public void deleteAlbum(Long id) {
-        Call<String> call = albumApiService.deleteAlbum(id);
+        Call<Void> call = albumApiService.deleteAlbum(id);
 
         call.enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(application.getApplicationContext(), response.body(), Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(application.getApplicationContext(), "Album deleted successfully", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(application.getApplicationContext(), "Unable to delete Album", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Error deleting an album", t);
             }

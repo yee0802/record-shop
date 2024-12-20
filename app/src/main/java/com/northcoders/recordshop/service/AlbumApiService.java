@@ -23,5 +23,5 @@ public interface AlbumApiService {
     Call<Album> updateAlbum(@Path("id") Long id, @Body Album album);
 
     @DELETE("albums/{id}")
-    Call<String> deleteAlbum(@Path("id") Long id);
+    Call<Void> deleteAlbum(@Path("id") Long id);
 }
