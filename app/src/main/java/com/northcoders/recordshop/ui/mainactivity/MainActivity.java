@@ -1,5 +1,6 @@
 package com.northcoders.recordshop.ui.mainactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,17 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.ActivityMainBinding;
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.ui.updatealbum.UpdateAlbumActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
     private RecyclerView recyclerView;
     private AlbumAdapter albumAdapter;
     private List<Album> albumsFromViewModel = new ArrayList<>();
     private MainActivityViewModel mainActivityViewModel;
     private ActivityMainBinding binding;
     private MainActivityClickHandler clickHandler;
+    private static final String ALBUM_KEY = "album_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +54,21 @@ public class MainActivity extends AppCompatActivity {
     private void displayInRecyclerView() {
         recyclerView = binding.mainRecyclerView;
 
-        albumAdapter = new AlbumAdapter(albumsFromViewModel, this);
+        albumAdapter = new AlbumAdapter(albumsFromViewModel, this, this);
         recyclerView.setAdapter(albumAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
         albumAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(MainActivity.this, UpdateAlbumActivity.class);
+
+        intent.putExtra(ALBUM_KEY, albumsFromViewModel.get(position));
+
+        startActivity(intent);
     }
 }
