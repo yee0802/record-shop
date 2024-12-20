@@ -22,7 +22,7 @@
                 android:id="@+id/album_item_image"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
-                android:src="@drawable/default_album_cover"
+                coverArtUrl="@{album.coverArtUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/album_item_info_container"
