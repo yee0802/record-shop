@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RecordShop"
-        tools:targetApi="31">
+        tools:targetApi="34">
+        <activity
+            android:name=".ui.updatealbum.UpdateAlbumActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.addalbum.AddNewAlbumActivity"
             android:exported="false" />
