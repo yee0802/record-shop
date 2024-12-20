@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="album"
+            type="com.northcoders.recordshop.model.Album" />
+        <variable
+            name="clickHandler"
+            type="com.northcoders.recordshop.ui.updatealbum.UpdateAlbumClickHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_dark_gray"
+        tools:context=".ui.addalbum.AddNewAlbumActivity">
+
+        <TextView
+            android:id="@+id/add_album_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="casual"
+            android:layout_marginTop="40dp"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:text="Update Album"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/add_album_name_input"
+            android:hint="Title"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:text="@={album.name}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_album_header"/>
+
+        <EditText
+            android:id="@+id/add_album_artist_input"
+            android:hint="Artist"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:text="@={album.artist.name}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_album_name_input"/>
+
+        <EditText
+            android:id="@+id/add_album_genre_input"
+            android:hint="Genre"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:text="@={album.genre}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_album_artist_input"/>
+
+        <EditText
+            android:id="@+id/add_album_cover_art_input"
+            android:hint="Cover Art URL"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:text="@={album.coverArtUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_album_genre_input"/>
+
+        <EditText
+            android:id="@+id/add_release_year_input"
+            android:hint="Release Year"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:text="@={album.releaseYear}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_album_cover_art_input"/>
+
+        <EditText
+            android:id="@+id/add_album_stock_quantity_input"
+            android:hint="Stock Quantity"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:text="@={album.stockQuantity}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_release_year_input"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/add_album_stock_quantity_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="44dp"
+            android:text="Update Album"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:onClick="@{clickHandler::onSubmitButtonClick}"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/back_arrow"
+            app:tint="@color/black"
+            app:maxImageSize="35dp"
+            android:backgroundTint="@color/white"
+            app:fabCustomSize="50dp"
+            android:onClick="@{clickHandler::onBackButtonClick}"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:src="@android:drawable/ic_menu_delete"
+            app:tint="@color/black"
+            app:maxImageSize="35dp"
+            android:backgroundTint="@color/white"
+            app:fabCustomSize="50dp"
+            android:onClick="@{clickHandler::onDeleteButtonClick}"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
