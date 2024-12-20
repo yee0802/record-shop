@@ -2,6 +2,7 @@ package com.northcoders.recordshop.ui.mainactivity;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -17,18 +18,33 @@ import java.util.List;
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
     private List<Album> albumList;
     private Context context;
+    private final RecyclerViewInterface recyclerViewInterface;
 
-    public AlbumAdapter(List<Album> albumList, Context context) {
+    public AlbumAdapter(List<Album> albumList, Context context, RecyclerViewInterface recyclerViewInterface) {
         this.albumList = albumList;
         this.context = context;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     public static class AlbumViewHolder extends RecyclerView.ViewHolder {
         private AlbumItemLayoutBinding binding;
 
-        public AlbumViewHolder(@NonNull AlbumItemLayoutBinding albumItemLayoutBinding) {
+        public AlbumViewHolder(@NonNull AlbumItemLayoutBinding albumItemLayoutBinding, RecyclerViewInterface recyclerViewInterface) {
             super(albumItemLayoutBinding.getRoot());
             this.binding = albumItemLayoutBinding;
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (recyclerViewInterface != null) {
+                        int position = getAdapterPosition();
+
+                        if (position != RecyclerView.NO_POSITION) {
+                            recyclerViewInterface.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -42,7 +58,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
                 false
         );
 
-        return new AlbumViewHolder(binding);
+        return new AlbumViewHolder(binding, recyclerViewInterface);
     }
 
     @Override
