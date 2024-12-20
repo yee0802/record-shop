@@ -17,6 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AlbumRepository {
+    private final String TAG = "AlbumRepository";
     private final Application application;
     private MutableLiveData<List<Album>> mutableLiveData;
     private AlbumApiService albumApiService;
@@ -39,7 +40,7 @@ public class AlbumRepository {
 
             @Override
             public void onFailure(Call<List<Album>> call, Throwable t) {
-                Log.e("AlbumRepository", "Error fetching all albums", t);
+                Log.e(TAG, "Error fetching all albums", t);
             }
         });
 
@@ -58,7 +59,24 @@ public class AlbumRepository {
             @Override
             public void onFailure(Call<Album> call, Throwable t) {
                 Toast.makeText(application.getApplicationContext(), "Unable to add Album", Toast.LENGTH_SHORT).show();
-                Log.e("AlbumRepository", "Error adding an album", t);
+                Log.e(TAG, "Error adding an album", t);
+            }
+        });
+    }
+
+    public void updateAlbum(Long id, Album album) {
+        Call<Album> call = albumApiService.updateAlbum(id, album);
+
+        call.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<Album> call, Response<Album> response) {
+                Toast.makeText(application.getApplicationContext(), "Album updated successfully", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Album> call, Throwable t) {
+                Toast.makeText(application.getApplicationContext(), "Unable to update Album", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Error updating an album", t);
             }
         });
     }
