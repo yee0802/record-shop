@@ -1,74 +1,52 @@
 package com.northcoders.recordshop.ui.mainactivity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.recordshop.R;
-import com.northcoders.recordshop.databinding.ActivityMainBinding;
-import com.northcoders.recordshop.model.Album;
-import com.northcoders.recordshop.ui.updatealbum.UpdateAlbumActivity;
+import com.northcoders.recordshop.ui.addalbum.AddNewAlbumFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
-    private RecyclerView recyclerView;
-    private AlbumAdapter albumAdapter;
-    private List<Album> albumsFromViewModel = new ArrayList<>();
-    private MainActivityViewModel mainActivityViewModel;
-    private ActivityMainBinding binding;
-    private MainActivityClickHandler clickHandler;
-    private static final String ALBUM_KEY = "album_key";
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
-        clickHandler = new MainActivityClickHandler(this);
-        binding.setClickHandler(clickHandler);
-
-        fetchAlbums();
+        bottomNavigationView = findViewById(R.id.main_nav_bar);
+        bottomNavigationView.setOnItemSelectedListener(this);
+        bottomNavigationView.setSelectedItemId(R.id.nav_bar_home);
     }
 
-    private void fetchAlbums() {
-        mainActivityViewModel.getAllAlbums().observe(this, new Observer<List<Album>>() {
-            @Override
-            public void onChanged(List<Album> albums) {
-                albumsFromViewModel = albums;
-                displayInRecyclerView();
-            }
-        });
-    }
-
-    private void displayInRecyclerView() {
-        recyclerView = binding.mainRecyclerView;
-
-        albumAdapter = new AlbumAdapter(albumsFromViewModel, this, this);
-        recyclerView.setAdapter(albumAdapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-
-        albumAdapter.notifyDataSetChanged();
-    }
+    HomeFragment homeFragment = new HomeFragment();
+    AddNewAlbumFragment addNewBookFragment = new AddNewAlbumFragment();
 
     @Override
-    public void onItemClick(int position) {
-        Intent intent = new Intent(MainActivity.this, UpdateAlbumActivity.class);
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.nav_bar_home) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_frame_layout, homeFragment)
+                    .commit();
 
-        intent.putExtra(ALBUM_KEY, albumsFromViewModel.get(position));
+            return true;
+        }
 
-        startActivity(intent);
+        if (item.getItemId() == R.id.nav_bar_add) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_frame_layout, addNewBookFragment)
+                    .commit();
+
+            return true;
+        }
+
+        return false;
     }
 }
