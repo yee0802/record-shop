@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.northcoders.recordshop.R;
@@ -16,11 +17,13 @@ import com.northcoders.recordshop.model.Album;
 import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
+    private FragmentActivity activity;
     private List<Album> albumList;
     private Context context;
     private final RecyclerViewInterface recyclerViewInterface;
 
-    public AlbumAdapter(List<Album> albumList, Context context, RecyclerViewInterface recyclerViewInterface) {
+    public AlbumAdapter(FragmentActivity activity, List<Album> albumList, Context context, RecyclerViewInterface recyclerViewInterface) {
+        this.activity = activity;
         this.albumList = albumList;
         this.context = context;
         this.recyclerViewInterface = recyclerViewInterface;

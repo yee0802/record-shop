@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation libs.androidx.swiperefreshlayout
     implementation libs.glide
     implementation libs.logging.interceptor
     implementation libs.retrofit
